@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     #MyApps:
     'learning_logs',
     'users',
+
+    #Other app:
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +126,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = '/users/login/'
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
