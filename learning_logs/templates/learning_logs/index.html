@@ -1,5 +1,15 @@
 {%  extends "learning_logs/base.html" %}
 
 {% block content %}
-<p>Learning log pomaga w monitorowaniu postepow w nauce.</p>
+
+    <div class="jumbotron ">
+  <h1 class="display-4">Monitoruj postępy w nauce!</h1>
+  <p class="lead"><a href="{% url 'users:register' %}">Zarejestruj konto</a>, aby rozpocząć
+     korzystanie z aplikacji Learning Log oraz wyświetlić listę poznawanych tematów.</p>
+  <hr class="my-4">
+  <p> Kiedykolwiek nauczysz się czegoś nowego w danym temacie, dodaj wpis podsumowujący to, czego się właśnie nauczyłeś.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'users:register' %}" role="button">Dołącz już teraz</a>
+  </p>
+</div>
 {% endblock content %}
