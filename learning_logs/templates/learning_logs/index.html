@@ -1,15 +1,23 @@
 {%  extends "learning_logs/base.html" %}
 
-{% block content %}
 
-    <div class="jumbotron ">
-  <h1 class="display-4">Monitoruj postępy w nauce!</h1>
-  <p class="lead"><a href="{% url 'users:register' %}">Zarejestruj konto</a>, aby rozpocząć
-     korzystanie z aplikacji Learning Log oraz wyświetlić listę poznawanych tematów.</p>
-  <hr class="my-4">
-  <p> Kiedykolwiek nauczysz się czegoś nowego w danym temacie, dodaj wpis podsumowujący to, czego się właśnie nauczyłeś.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="{% url 'users:register' %}" role="button">Dołącz już teraz</a>
-  </p>
-</div>
+{% block content %}
+    {% if user.is_authenticated %}
+    <div class="jumbotron text-center">
+      <h1 class="display-4">{{ cytat }}</h1>
+      <p class="lead">{{ autor }}</p>
+      <hr class="my-4">
+    </div>
+    {% else %}
+        <div class="jumbotron ">
+      <h1 class="display-4">Monitoruj postępy w nauce!</h1>
+      <p class="lead"><a href="{% url 'users:register' %}">Zarejestruj konto</a>, aby rozpocząć
+         korzystanie z aplikacji Learning Log oraz wyświetlić listę poznawanych tematów.</p>
+      <hr class="my-4">
+      <p> Kiedykolwiek nauczysz się czegoś nowego w danym temacie, dodaj wpis podsumowujący to, czego się właśnie nauczyłeś.</p>
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'users:register' %}" role="button">Dołącz już teraz</a>
+      </p>
+    </div>
+    {% endif %}
 {% endblock content %}

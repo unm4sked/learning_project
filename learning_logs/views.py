@@ -4,11 +4,29 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from .forms import TopicForm, EntryForm, Entry
 from django.contrib.auth.decorators import login_required
-
+import random
 
 def index(request):
-    """Page"""
-    return render(request, 'learning_logs/index.html')
+    """Home Page"""
+
+    motivation = [
+        ["Dwa najważniejsze dni Twojego życia to ten, w którym się urodziłeś oraz ten, w którym dowiedziałeś się, po co.","Mark Twain"],
+        ["Twoje życie staje się lepsze, tylko, gdy Ty stajesz się lepszym.", "Brian Tracy"],
+        ["Pudłujesz 100% strzałów, jeśli w ogóle ich nie wykonujesz.", "Wayne Gretzky"],
+        ["Najlepszą zemstą jest ogromny sukces.", "Frank Sinatra"],
+        ["Twój czas jest ograniczony, więc nie marnuj go na byciem kimś, kim nie jesteś."," Steve Jobs"],
+        ["Aby zer­wać z na­wykiem, wyrób so­bie in­ny, który go wymaże.","Mark Twain"],
+        ["Na szczycie zawsze znajdzie się miejsce.","Daniel Webster"],
+        ["Człowiek, który goni dwa zające nie złapie ani jednego.","Konfucjusz"],
+        ["Za dwadzieścia lat bar­dziej będziesz żałował te­go, cze­go nie zro­biłeś, niż te­go, co zro­biłeś. Więc od­wiąż li­ny, opuść bez­pie­czną przys­tań. Złap w żag­le po­myślne wiat­ry. Podróżuj, śnij, od­kry­waj.","Mark Twain"],
+        ["Nie ma nic złego w świętowaniu sukcesu, ale ważniejsze jest wyciągnięcie nauki z porażki","Bill Gates"],
+        ["Nic nie jest podawane na tacy – każdy zawsze trafia na jakieś przeszkody po drodze. Kiedy się pojawią, zastanów się jak je pokonać, a nie myśl o tym, że to już koniec drogi.","Michael Jordan"]
+    ]
+
+    quotes = random.choice(motivation)
+
+    context = {'cytat': quotes[0], 'autor': quotes[1]}
+    return render(request, 'learning_logs/index.html', context)
 
 
 @login_required
