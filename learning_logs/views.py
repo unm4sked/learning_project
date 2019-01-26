@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import Topic
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import TopicForm, EntryForm
+from .forms import TopicForm, EntryForm, Entry
+
 
 def index(request):
     """Page"""
@@ -39,21 +40,39 @@ def new_topic(request):
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
 
+
 def new_entry(request, topic_id):
     """Add new entry """
     topic = Topic.objects.get(id=topic_id)
 
     if request.method != 'POST':
-        #No parameters
+        # No parameters
         form = EntryForm()
     else:
-        #Parameters exists
+        # Parameters exists
         form = EntryForm(data=request.POST)
         if form.is_valid():
             new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
-            return HttpResponseRedirect(reverse('learning_logs:topic',args=[topic_id]))
+            return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic_id]))
 
     context = {'topic': topic, 'form': form}
-    return render(request,'learning_logs/new_entry.html',context)
+    return render(request, 'learning_logs/new_entry.html', context)
+
+
+def edit_entry(request, entry_id):
+    """Edit entry"""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+
+    if request.method != 'POST':
+        """Aktual data in form"""
+        form = EntryForm(instance=entry)
+    else:
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
+    context = {'entry': entry, 'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_entry.html', context)

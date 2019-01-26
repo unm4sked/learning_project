@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+    {% if form.error %}
+    <p>Nazwa użytkownika lub hasło są nieprawidłowe. Spróbuj ponownie.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Zaloguj</button>
+
+    <input type="hidden" name="next" value="{% url 'learning_logs:index' %}">
+    </form>
+{% endblock content %}
