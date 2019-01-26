@@ -57,3 +57,28 @@
     .submit:hover {
         background-color: lightgrey;
     }
+
+.form-wrapper-register {
+    /*max-width: 800px;*/
+    width: 100%;
+    background-color: #f2f2f2;
+    color: #1c1c1c;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .25);
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.item-entry {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.item-entry-button{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+ul {
+list-style-type: none;
+}

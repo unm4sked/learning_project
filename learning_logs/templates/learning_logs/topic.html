@@ -1,18 +1,32 @@
 {% extends 'learning_logs/base.html' %}
 {% block content %}
-    <p>Temat: {{ topic }}</p>
-    <p>Wpisy:</p>
-    <p>
-        <a href="{% url 'learning_logs:new_entry' topic.id %}">Dodaj nowy wpis</a>
+    <h2>Temat: {{ topic }}</h2>
+     <p class="float-right">
+        <a href="{% url 'learning_logs:new_entry' topic.id %}">
+            <button class="btn btn-primary">
+               Dodaj nowy wpis
+            </button>
+        </a>
     </p>
+    <br>
+    <h3>Wpisy:</h3>
+    <br>
+
     <ul>
         {% for entry in entries %}
+             <h5>{{ entry.date_added|date:'d M Y H:i' }}</h5>
             <li>
-                <p>{{ entry.date_added|date:'d M Y H:i' }}</p>
+                <div class="item-entry border border-secondary rounded">
                 <p>{{ entry.text|linebreaks }}</p>
-                <p>
-                    <a href="{% url 'learning_logs:edit_entry' entry.id %}">Edytuj wpis</a>
-                </p>
+
+                </div>
+                <a href="{% url 'learning_logs:edit_entry' entry.id %}">
+            <button class="btn btn-primary btn-sm item-entry-button float-right">
+                    Edytuj wpis
+            </button>
+                    </a>
+            <br>
+            <br>
             </li>
         {% empty %}
         <li>
@@ -20,4 +34,6 @@
         </li>
         {% endfor %}
     </ul>
+
+
 {% endblock content %}
